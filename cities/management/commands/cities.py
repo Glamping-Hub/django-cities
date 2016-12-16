@@ -477,7 +477,7 @@ class Command(BaseCommand):
                 if IGNORE_EMPTY_REGIONS:
                     city.region = None
                 else:
-                    print("{}: {}: Cannot find region: {} -- skipping", country_code, city.name, region_code)
+                    print(u"{}: {}: Cannot find region: {} -- skipping", country_code, city.name, region_code)
                     self.logger.warning("%s: %s: Cannot find region: %s -- skipping",
                                         country_code, city.name, region_code)
                     continue
@@ -665,7 +665,7 @@ class Command(BaseCommand):
                 pass
             else:
                 print(
-                    "Trying to add a numeric alternative name to {} ({}): {}".format(
+                    u"Trying to add a numeric alternative name to {} ({}): {}".format(
                         geo_info['object'].name,
                         geo_info['type'].__name__,
                         item['name']),
