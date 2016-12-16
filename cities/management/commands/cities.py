@@ -55,6 +55,9 @@ from ...conf import (city_types, district_types, import_opts, import_opts_all,
 from ...models import (Region, Subregion, District, PostalCode, AlternativeName)
 from ...util import geo_distance
 
+if sys.version_info >= (3, 0):
+    unicode = str
+
 
 # Load swappable models
 Continent = load_model('cities', 'Continent')
@@ -477,7 +480,10 @@ class Command(BaseCommand):
                 if IGNORE_EMPTY_REGIONS:
                     city.region = None
                 else:
-                    print(u"{}: {}: Cannot find region: {} -- skipping", country_code, city.name, region_code)
+                    print(u"{}: {}: Cannot find region: {} -- skipping",
+                          unicode(country_code),
+                          unicode(city.name),
+                          unicode(region_code))
                     self.logger.warning("%s: %s: Cannot find region: %s -- skipping",
                                         country_code, city.name, region_code)
                     continue
